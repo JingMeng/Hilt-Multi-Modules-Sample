@@ -10,9 +10,10 @@ import dagger.hilt.components.SingletonComponent
 @InstallIn(SingletonComponent::class)
 class ApplicationModule {
 
-  @Provides
-  @AppHash
-  fun provideHash(): String {
-      return hashCode().toString()
-  }
+    @Provides
+    @AppHash
+    fun provideHash(): String {
+        return "HEL:LO"
+    }
+
 }
