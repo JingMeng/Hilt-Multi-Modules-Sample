@@ -10,12 +10,19 @@ import com.github.takahirom.dagger.hilt.multimodule.sample.feature.databinding.F
 import dagger.hilt.android.AndroidEntryPoint
 import m.tech.base.BaseFragment
 import m.tech.base.BaseFragment2
+import m.tech.base.BaseFragment3
 import javax.inject.Inject
 
 //ERROR CASE: this will cause compile error
+/**
+ * https://www.jianshu.com/p/b5b2a5dfaaf4
+ */
 @AndroidEntryPoint
 class WillErrorFragment :
-    BaseFragment<FragmentWillErrorBinding>(FragmentWillErrorBinding::inflate) {
+    BaseFragment3<FragmentWillErrorBinding>(
+        FragmentWillErrorBinding::inflate,
+        FragmentWillErrorBinding::class.java
+    ) {
 
     @Inject
     @AppHash
@@ -23,7 +30,7 @@ class WillErrorFragment :
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        Log.d("TAG", "onViewCreated: $appHash")
+        Log.d("TAG", "onViewCreated: $appHash----------${binding is FragmentWillErrorBinding}--")
         Toast.makeText(context, "", Toast.LENGTH_SHORT).show()
     }
 

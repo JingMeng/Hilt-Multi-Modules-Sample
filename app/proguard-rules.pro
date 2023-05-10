@@ -19,3 +19,10 @@
 # If you keep the line number information, uncomment this to
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
+
+#不混淆某个类
+
+#这个报错是因为app没有依赖base的问题----但是并不妨碍使用的问题
+-keep public class m.tech.base.BaseFragment3 { *; }
+-keep public class com.github.takahirom.feature.WillErrorFragment { *; }
+-keep public class com.github.takahirom.dagger.hilt.multimodule.sample.feature.databinding.FragmentWillErrorBinding { *; }
