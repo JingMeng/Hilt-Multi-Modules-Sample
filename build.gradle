@@ -1,16 +1,41 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 buildscript {
     ext.kotlin_version = "1.5.21"
+    ext.dagger_hilt = "2.41"
 //    ext.kotlin_version = "1.6.0"
     repositories {
         google()
         jcenter()
     }
     dependencies {
-        classpath "com.android.tools.build:gradle:4.0.2"
-//        classpath "com.android.tools.build:gradle:7.3.0"
+//        classpath "com.android.tools.build:gradle:4.0.2"
+        classpath "com.android.tools.build:gradle:7.3.0"
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
-        classpath 'com.google.dagger:hilt-android-gradle-plugin:2.38.1'
+
+        /***
+         * 当前版本  2.38.1
+         * 建议版本  2.45  这个版本是没有问题的，可以获取到泛型的问题
+         *
+         *  这个版本说明了存在 Fix an AGP 7.2 incompatibility（不兼容的问题）
+         *  https://github.com/google/dagger/releases/tag/dagger-2.40.1
+         *
+         *  测试步骤： 1. 先测试 2.40    这个无法解决那个问题
+         *           2. 再测试 2.40.1  这个无法解决那个问题
+         *           3. 递进测试 2.41 成功
+         *
+         *
+         *  在 2.41 的 Bug Fixes 中有这么一段话
+         *   Fix an issue where Hilt transform was not correctly updating the Signature attribute of an @AndroidEntryPoint whose superclass contained a type variable.
+         *
+         *
+         * 关于查看每个版本的更新日志的问题
+         *
+         *  1. 期初查阅了官网，说明 以及 gitlab都没有找到 相关更新说明
+         *  2. 按照之前思考 找了tag ，点击每一个tag都有详细的解释
+         *  3. 最后发现 https://github.com/google/dagger/releases 这种方式更加便捷
+         *
+         */
+        classpath "com.google.dagger:hilt-android-gradle-plugin:$dagger_hilt"
 
 
         // NOTE: Do not place your application dependencies here; they belong
